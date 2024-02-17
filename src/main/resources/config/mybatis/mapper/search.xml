@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+
+	<!-- 예약 가능한 숙박 시설 검색 -->
+	<select id="accommdation_list" resultType="search">
+		<![CDATA[
+		SELECT DISTINCT *
+		FROM ROOM R
+		LEFT JOIN RESERVATION RV ON R.RO_NUM = RV.RO_NUM
+		JOIN BUSINESS BU ON R.BU_EMAIL = BU.BU_EMAIL
+		WHERE (RV.RO_NUM IS NULL)
+		AND (R.CHECKIN >= TO_DATE(#{checkin}, 'YYYY-MM-DD'))
+		AND (R.CHECKOUT <= TO_DATE(#{checkout}, 'YYYY-MM-DD'))
+		AND (BU.BU_ADDR LIKE '%#{bu_addr}'%'
+		OR BU.BU_TITLE LIKE '%#{bu_title}'%')
+		AND (R.RO_COUNT >= #{ro_count})
+		]]>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

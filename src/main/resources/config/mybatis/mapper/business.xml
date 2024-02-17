@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+	
+	<select id="category" parameterType="int" resultType="business">
+		select *
+		from business where bu_id = #{bu_id}
+	</select>
+
+	<select id="loginCheck" parameterType="String"
+		resultType="business">
+		select * from member where bu_email = #{bu_email}
+	</select>
+
+	<insert id="insert" parameterType="business">
+		insert into member
+		values(#{bu_email},
+		#{bu_name},
+		#{bu_pwd},
+		#{bu_tel}
+		)
+	</insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
